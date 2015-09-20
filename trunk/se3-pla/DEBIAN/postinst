@@ -1,0 +1,30 @@
+#!/bin/bash
+# extraction des paramètres de BdD pour SE3-PLA
+
+source="/var/www/se3/includes/config.inc.php"
+fichier="/var/www/se3/includes/param_db.inc.php"
+
+echo "<?php" > $fichier
+echo >> $fichier
+echo "#Fichier généré pour SE3-PLA" >> $fichier
+echo >> $fichier
+grep \$dbhost= $source >> $fichier
+grep \$dbname= $source >> $fichier
+grep \$dbuser= $source >> $fichier
+grep \$dbpass= $source >> $fichier
+echo "?>" >> $fichier
+
+chown www-se3:root $fichier
+chmod 750 $fichier
+
+# fichier de configuration de PLA
+mv -n /etc/phpldapadmin/config.php /etc/phpldapadmin/config.origin.php
+cp /etc/phpldapadmin/config.se3.php /etc/phpldapadmin/config.php
+chown root:www-data /etc/phpldapadmin/config.php
+chmod 640 /etc/phpldapadmin/config.php
+
+# fichier de configuration apache
+mv /etc/apache2/conf.d/phpldapadmin /etc/apache2se/conf.d/phpldapadmin
+/etc/init.d/apache2se restart
+
+
