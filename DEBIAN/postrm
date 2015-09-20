@@ -1,0 +1,13 @@
+#!/bin/bash
+# nettoyage
+
+rm -f /var/www/se3/includes/param_db.inc.php
+
+mv -f /etc/phpldapadmin/config.origin.php /etc/phpldapadmin/config.php
+rm -f /etc/phpldapadmin/config.se3.php
+
+mv -f /etc/apache2se/conf.d/phpldapadmin /etc/apache2/conf.d/phpldapadmin 
+
+/etc/init.d/apache2se restart
+/etc/init.d/apache2 restart
+

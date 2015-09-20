@@ -1,0 +1,10 @@
+Package: se3-pla
+Version: 0.3
+Section: contrib
+Priority: optional
+Architecture: all
+Depends: se3, phpldapadmin
+Maintainer: Christian Westphal <christian.westphal@ac-strasbourg.fr>
+Description: Explorateur LDAP pour SE3
+Homepage: 
+
