@@ -12,8 +12,8 @@ echo "<?php
 \$dbname=\"$dbname\"; 
 \$dbuser=\"$dbuser\"; 
 \$dbpass=\"$dbpass\"; 
-?\>
->" $param_file 
+?>
+" > $param_file 
 
 chown www-se3:root $param_file
 chmod 750 $param_file
@@ -35,4 +35,4 @@ if [ -e /etc/apache2/conf.d/phpldapadmin ]; then
 fi
 /etc/init.d/apache2se restart
 
-
+exit 0
