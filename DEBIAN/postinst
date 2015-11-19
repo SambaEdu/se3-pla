@@ -31,8 +31,9 @@ chmod 640 $conf_file
 
 # fichier de configuration apache
 if [ -e /etc/apache2/conf.d/phpldapadmin ]; then
-	mv /etc/apache2/conf.d/phpldapadmin /etc/apache2se/conf.d/phpldapadmin
+	mv -f /etc/apache2/conf.d/phpldapadmin /etc/apache2se/conf.d/phpldapadmin
 fi
-/etc/init.d/apache2se restart
+/etc/init.d/apache2se reload
+/etc/init.d/apache2 reload
 
 exit 0
