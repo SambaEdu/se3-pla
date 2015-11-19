@@ -1,13 +1,19 @@
 #!/bin/bash
 # nettoyage
 
-rm -f /var/www/se3/includes/param_db.inc.php
 
-mv -f /etc/phpldapadmin/config.origin.php /etc/phpldapadmin/config.php
-rm -f /etc/phpldapadmin/config.se3.php
+param_file="/var/www/se3/includes/param_db.inc.php"
+conf_file="/etc/phpldapadmin/config.php"
+conf_file_backup="/etc/phpldapadmin/config-origin.php"
 
-mv -f /etc/apache2se/conf.d/phpldapadmin /etc/apache2/conf.d/phpldapadmin 
 
-/etc/init.d/apache2se restart
-/etc/init.d/apache2 restart
+rm -f $param_file
 
+
+# fichier de configuration de PLA
+if [ -e "$conf_file_backup" ]; then
+	mv -f $conf_file_backup $conf_file  
+fi
+
+/etc/init.d/apache2se reload
+/etc/init.d/apache2 reload
