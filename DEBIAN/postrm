@@ -12,8 +12,10 @@ rm -f $param_file
 
 # fichier de configuration de PLA
 if [ -e "$conf_file_backup" ]; then
-	mv -f $conf_file_backup $conf_file  
+	mv -f $conf_file_backup $conf_file || true
 fi
+
+rm -f /etc/apache2se/conf.d/phpldapadmin
 
 /etc/init.d/apache2se reload
 /etc/init.d/apache2 reload
