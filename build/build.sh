@@ -8,9 +8,12 @@ if [ ! -e "/usr/bin/fakeroot" ]; then
 	apt-get install fakeroot
 fi
 
+
+script_dir=$(cd $(dirname "$0"); pwd)
+pkg_name="$(basename $(cd ..;pwd))"
+
 MODULENAME="se3-pla"
-SCRIPTDIR="${0%/*}"
-BUILDDIR=$(cd "$SCRIPTDIR"; pwd) # Same as SCRIPTDIR but with a full path.
+BUILDDIR=$(cd "$script_dir"; pwd) # Same as script_dir but with a full path.
 PKGDIR="${BUILDDIR}/$MODULENAME"
 
 
