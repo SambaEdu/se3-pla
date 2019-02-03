@@ -15,7 +15,11 @@ if [ -e "$conf_file_backup" ]; then
 	mv -f $conf_file_backup $conf_file || true
 fi
 
-rm -f /etc/apache2se/conf.d/phpldapadmin
+# rm -f /etc/apache2se/conf.d/phpldapadmin
+# Remise en place du fichier dans sont emplacement d'origine
+if [ -e /etc/apache2se/conf.d/phpldapadmin ]; then
+	mv -f /etc/apache2se/conf.d/phpldapadmin /etc/apache2/conf.d/phpldapadmin
+fi
 
 /etc/init.d/apache2se reload
 /etc/init.d/apache2 reload
